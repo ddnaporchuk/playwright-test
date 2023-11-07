@@ -13,8 +13,8 @@ import { defineConfig, devices } from '@playwright/test'
 const config = defineConfig({
   testDir: './tests',
   // testMatch: 'tests/**/*/.spec.js',
-  globalSetup: './globalSetup',
-  globalTeardown: './globalTeardown',
+  // globalSetup: './globalSetup',
+  // globalTeardown: './globalTeardown',
   timeout: 360_000,
   /* Run tests in files in parallel */
   fullyParallel: false,
@@ -28,11 +28,22 @@ const config = defineConfig({
   reporter: [['html', {open: 'never'}]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    headless: false,
+    httpCredentials: {
+      username: "guest",
+      password: "welcome2qauto"
+    },
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://127.0.0.1:3000',
-
+    baseURL: 'https://qauto.forstudy.space/',
+    viewport: {
+      width: 1200,
+      height: 840
+    },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    launchOptions:{
+      slowMo: 1000
+    }
   },
 
   /* Configure projects for major browsers */
