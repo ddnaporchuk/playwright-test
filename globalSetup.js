@@ -1,6 +1,6 @@
 
-async function globalSetup(){
-    console.log("GLOBAL SETUP")
-}
+// async function globalSetup(){
+//     console.log("GLOBAL SETUP")
+// }
 
-export default globalSetup
+// export default globalSetup
