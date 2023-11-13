@@ -71,9 +71,9 @@ test.describe('Sign up, negative tests', () => {
 
         signUpPopup = await welcomePage.openSignupPopup()
         await signUpPopup.fillForm(signUpData)
-        await expect(signUpPopup.nameErrorMessage).toContainText('Name has to be from 2 to 20 characters long');
-        await expect(signUpPopup.nameErrorMessage).toContainText('Name is invalid');
-        await expect(signUpPopup.nameErrorMessage, "Border color should be red").toHaveCSS('color', 'rgb(220, 53, 69)');
+        await expect(signUpPopup.errorMessage).toContainText('Name has to be from 2 to 20 characters long');
+        await expect(signUpPopup.errorMessage).toContainText('Name is invalid');
+        await expect(signUpPopup.errorMessage, "Border color should be red").toHaveCSS('color', 'rgb(220, 53, 69)');
         await expect(signUpPopup.registerButton, "Register button should be disabled").toBeDisabled()
     });
 
@@ -88,9 +88,9 @@ test.describe('Sign up, negative tests', () => {
 
         signUpPopup = await welcomePage.openSignupPopup()
         await signUpPopup.fillForm(signUpData)
-        await expect(signUpPopup.nameErrorMessage, "Error message should be visible").toBeVisible();
-        await expect(signUpPopup.nameErrorMessage).toContainText('Last name required');
-        await expect(signUpPopup.nameErrorMessage, "Border color should be red").toHaveCSS('color', 'rgb(220, 53, 69)') 
+        await expect(signUpPopup.errorMessage, "Error message should be visible").toBeVisible();
+        await expect(signUpPopup.errorMessage).toContainText('Last name required');
+        await expect(signUpPopup.errorMessage, "Border color should be red").toHaveCSS('color', 'rgb(220, 53, 69)') 
         
         await expect(signUpPopup.registerButton, "Register button should be disabled").toBeDisabled()
     });
@@ -106,9 +106,9 @@ test.describe('Sign up, negative tests', () => {
 
         signUpPopup = await welcomePage.openSignupPopup()
         await signUpPopup.fillForm(signUpData)
-        await expect(signUpPopup.nameErrorMessage, "Error message should be visible").toBeVisible();
-        await expect(signUpPopup.nameErrorMessage).toContainText('Email is incorrect');
-        await expect(signUpPopup.nameErrorMessage, "Border color should be red").toHaveCSS('color', 'rgb(220, 53, 69)')
+        await expect(signUpPopup.errorMessage, "Error message should be visible").toBeVisible();
+        await expect(signUpPopup.errorMessage).toContainText('Email is incorrect');
+        await expect(signUpPopup.errorMessage, "Border color should be red").toHaveCSS('color', 'rgb(220, 53, 69)')
 
         await expect(signUpPopup.registerButton, "Register button should be disabled").toBeDisabled();
     });
@@ -124,9 +124,9 @@ test.describe('Sign up, negative tests', () => {
 
         signUpPopup = await welcomePage.openSignupPopup()
         await signUpPopup.fillForm(signUpData)
-        await expect(signUpPopup.nameErrorMessage, "Error message should be visible").toBeVisible();
-        await expect(signUpPopup.nameErrorMessage).toContainText('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter');
-        await expect(signUpPopup.nameErrorMessage, "Border color should be red").toHaveCSS('color', 'rgb(220, 53, 69)')
+        await expect(signUpPopup.errorMessage, "Error message should be visible").toBeVisible();
+        await expect(signUpPopup.errorMessage).toContainText('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter');
+        await expect(signUpPopup.errorMessage, "Border color should be red").toHaveCSS('color', 'rgb(220, 53, 69)')
 
         await expect(signUpPopup.registerButton, "Register button should be disabled").toBeDisabled();
     });
@@ -142,9 +142,9 @@ test.describe('Sign up, negative tests', () => {
         
         signUpPopup = await welcomePage.openSignupPopup()
         await signUpPopup.fillForm(signUpData)
-        await expect(signUpPopup.nameErrorMessage, "Error message should be visible").toBeVisible();
-        await expect(signUpPopup.nameErrorMessage).toContainText('Passwords do not match');
-        await expect(signUpPopup.nameErrorMessage, "Border color should be red").toHaveCSS('color', 'rgb(220, 53, 69)');
+        await expect(signUpPopup.errorMessage, "Error message should be visible").toBeVisible();
+        await expect(signUpPopup.errorMessage).toContainText('Passwords do not match');
+        await expect(signUpPopup.errorMessage, "Border color should be red").toHaveCSS('color', 'rgb(220, 53, 69)');
         
         await expect(signUpPopup.registerButton, "Register button should be disabled").toBeDisabled();
     });

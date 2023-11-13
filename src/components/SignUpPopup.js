@@ -11,7 +11,7 @@ export default class SignUpPopup extends BaseComponent {
         this.passwordInput = this._container.locator('input#signupPassword')
         this.repasswordInput = this._container.locator('input#signupRepeatPassword')
         this.registerButton = this._container.locator('.btn-primary')
-        this.nameErrorMessage = this._container.locator('.invalid-feedback')
+        this.errorMessage = this._container.locator('.invalid-feedback')
         }
 
     async registrationUser ({name, lastName, email, password}){
@@ -21,7 +21,7 @@ export default class SignUpPopup extends BaseComponent {
         await this.passwordInput.fill(password)
         await this.repasswordInput.fill(password)
         await this.registerButton.click()
-        await expect(this._page).toHaveURL('https://qauto.forstudy.space/panel/garage')
+        await expect(this._page).toHaveURL('/panel/garage')
     }
     
     async fillForm({name, lastName, email, password, rePassword, switchFocus}){
