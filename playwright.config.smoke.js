@@ -10,13 +10,12 @@ import{config as testConfig} from "./config/config.js"
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-
-
 const config = defineConfig({
   testDir: './tests',
   // testMatch: 'tests/**/*/.spec.js',
   // globalSetup: './globalSetup',
   // globalTeardown: './globalTeardown',
+  grep: /@smoke/,
   timeout: 360_000,
   /* Run tests in files in parallel */
   fullyParallel: false,
@@ -41,7 +40,7 @@ const config = defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     launchOptions:{
-      slowMo: 1000
+      // slowMo: 1000
     }
   },
 

@@ -2,7 +2,7 @@ import {expect, test} from "@playwright/test";
 import {WelcomePage} from "../../src/welcomePage/WelcomePage.js";
 import {faker} from "@faker-js/faker";
 
-test.describe("Welcome page", ()=>{
+test.describe("Welcome page @smoke", ()=>{
     let page
     let welcomePage
     let signUpPopup
@@ -38,7 +38,7 @@ test.describe("Welcome page", ()=>{
     });
 });
 
-test.describe('Sign up, negative tests', () => {
+test.describe('Sign up, negative tests  @regression', () => {
     let page
     let welcomePage
     let signUpPopup
