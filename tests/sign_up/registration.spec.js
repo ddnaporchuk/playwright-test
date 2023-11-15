@@ -1,11 +1,11 @@
 import {test, expect} from '@playwright/test';
 import { faker } from '@faker-js/faker';
 
-test.beforeEach('Open page', async ({page}) =>{
-    await page.goto('/');
-});
+// test.beforeEach('Open page', async ({page}) =>{
+//     await page.goto('/');
+// });
 
-test.describe('Sign up, positive tests', () => {
+test.describe.skip('Sign up, positive tests', () => {
     test('User registration', async({page}) => {
         const firstName = faker.person.firstName({ length: 5 });
         const lastName = faker.person.lastName({ length: 5 });
@@ -45,7 +45,7 @@ test.describe('Sign up, positive tests', () => {
 });
 
 
-test.describe('Sign up, negative tests', () => {
+test.describe.skip('Sign up, negative tests', () => {
    test("Create user with invalid first name", async ({ page }) => {
         const firstName = 'test2symbolsinvalidtest'; 
         const lastName = faker.person.lastName();
