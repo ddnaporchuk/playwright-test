@@ -8,7 +8,7 @@ export class WelcomePage extends BasePage {
     constructor(page) {
         super(page, '/', page.locator('button', {hasText: 'Guest log in'}));
         this.signUpButton = this._page.locator('button:text("Sign up")');
-        this.signInButton = this._page.locator('.header-signin');
+        this.signInButton = this._page.locator('.header_signin');
     }
 
     async openSignInPopup(){

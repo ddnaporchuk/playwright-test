@@ -19,7 +19,7 @@ export default class SignInPopup extends BaseComponent {
     }
 
     async signIn (signInData){
-        await this.fill(signInData)
+        await this.fillForm(signInData)
         await this.signInButton.click()
         await expect(this._page).toHaveURL('/panel/garage')
     }
