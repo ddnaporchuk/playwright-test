@@ -30,8 +30,13 @@ test.describe('API tests', ()=>{
         const requestBody = {
             carBrandId: 1,
             carModelId: 19,
-            mileage: -1
+            mileage: 0
         }
+        
+        const badRequest = {
+            "status": "error",
+            "message": "Model not found"
+          }
 
         const response = await userAPIClient.post('/api/cars', {
             data:requestBody
@@ -39,16 +44,21 @@ test.describe('API tests', ()=>{
 
         const body = await response.json()
         console.log(body)
-        expect(response.status(), "400 response should be 404").toEqual(404)
-        await expect(body.status).toBe("error")
-        expect(body, "should return error message").toEqual("Model not found")
+        expect(response.status(), "404 response should be 404").toEqual(404)
+        expect(body, "should return error message").toMatchObject(badRequest)
     })
+
     test('Should return error message about invalid car brand', async ({userAPIClient}) => {
         const requestBody = {
             carBrandId: "string",
             carModelId: 2,
             mileage: 1
         }
+
+        const badRequest = {
+            "status": "error",
+            "message": "Invalid car brand type"
+          }
 
         const response = await userAPIClient.post('/api/cars', {
             data:requestBody
@@ -57,7 +67,6 @@ test.describe('API tests', ()=>{
         const body = await response.json()
         console.log(body)
         expect(response.status(), "400 response should be returned").toEqual(400)
-        await expect(body.status).toBe("error")
-        expect(body, "should return error message").toEqual("Invalid car brand type")
+        expect(body, "should return error message").toMatchObject(badRequest)
     })
 })
