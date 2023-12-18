@@ -12,7 +12,7 @@ test.describe("PUT requests", () => {
     let updateData
 
     test.beforeAll(async () => {
-        client = await APIClient.authenticate(undefined, {
+        client = await APIClient.authenticate({
             "email": USERS.DEN_LOGIN.email,
             "password": USERS.DEN_LOGIN.password,
             "remember": false
