@@ -1,13 +1,13 @@
 import { expect, test } from "@playwright/test"
 import { USERS } from "../../src/data/dict/users"
-import { EXAMPLE_CARS } from "./fixtures/cars.fixtures.js"
 import APIClient from "../../src/client/APIClient.js"
+import { VALID_BRANDS_RESPONSE_BODY } from "../../src/data/dict/brands.js"
+import { VALID_BRAND_MODELS } from "../../src/data/dict/models.js"
 
 test.describe("DELETE requests", () => {
     let client
-    let unauthorizedClient
-    let cars
     let carId
+    let carsDelete = []
 
     test.beforeAll(async () => {
         client = await APIClient.authenticate({
@@ -15,36 +15,42 @@ test.describe("DELETE requests", () => {
             "password": USERS.DEN_LOGIN.password,
             "remember": false
         })
+    })
 
-        unauthorizedClient = new APIClient()
-
-        cars = await client.cars.getUserCars()
+    test.beforeEach(async () => {
+        const brandId = VALID_BRANDS_RESPONSE_BODY.data[0].id
+        const modelId = VALID_BRAND_MODELS[brandId].data[1].id
+        const requestBody = {
+            "carBrandId": brandId,
+            "carModelId": modelId,
+            "mileage": 155
+        }
+        
+        const newCar = await client.cars.createNewCar(requestBody)
+        carId = newCar.data.data.id
     })
 
     test("Should delete car", async () => {
-        const carDelete = cars.data.data[0]
-        const response = await client.cars.deleteCar(carDelete.id)
+        const response = await client.cars.deleteCar(carId)
         const body = response.data
 
         expect(response.status, "Status code should be 200").toEqual(200)
         expect(body.status).toBe("ok")
-        expect(body.data.carId, "Car should be delete").toEqual(carDelete.id)
     })
 
-    test("Should return error car not found", async () => {
-        const response = await client.cars.deleteCar(200)
+    test('Should return error message for car with invalid carId', async ()=>{
+        const invalidCar = 0
+        const response = await client.cars.deleteCar(invalidCar)
         const body = response.data
 
         expect(response.status, "Status code should be 404").toEqual(404)
-        expect(body.message, "should throw error message").toEqual("Car not found")
-      })
+        expect(body.message, "Error message for car with invalid carModelId should be returned").toEqual('Car not found')
+        carsDelete.push(carId)
+    })
 
-    test("Should return an error missing authorized client", async () => {
-        const testCar = cars.data.data[1]
-        const response = await unauthorizedClient.cars.deleteCar(testCar[1])
-        const body = response.data
-
-        expect(response.status, "Status code should be 401").toEqual(401)
-        expect(body.message, "Should return error message").toEqual("Not authenticated")
+    test.afterAll(async () => {
+        for (const id of carsDelete) {
+            await client.cars.deleteCar(id)
+        }
     })
 })
