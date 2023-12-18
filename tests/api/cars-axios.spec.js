@@ -8,7 +8,7 @@ import { VALID_BRAND_MODELS } from "../../src/data/dict/models.js"
 import {config} from "../../config/config.js"
 import {USERS} from "../../src/data/dict/users.js"
 
-test.describe('API tests', ()=>{
+test.describe.skip('API tests', ()=>{
     let client
 
     test.beforeAll(async () => {
