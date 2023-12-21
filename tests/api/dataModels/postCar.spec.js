@@ -5,7 +5,7 @@ import { USERS } from "../../../src/data/dict/users.js";
 import APIClient from "../../../src/client/APIClient.js";
 import { CreateCarModel } from "../../../src/models/cars/CreateCarModel.js";
 
-test.describe.only("POST cars", ()=>{
+test.describe("POST cars", ()=>{
     let client
     let carId
 

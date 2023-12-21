@@ -7,7 +7,7 @@ import APIClient from "../../../src/client/APIClient.js";
 import { CreateCarModel } from "../../../src/models/cars/CreateCarModel.js";
 import { UpdateCarModel } from "../../../src/models/cars/UpdateCarModel.js";
 
-test.describe.only("PUT cars", ()=>{
+test.describe("PUT cars", ()=>{
     let client
     let carId
     let cars
